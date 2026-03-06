@@ -8,7 +8,10 @@ This is an implementation of a TAMER agent, converted from a standard Q-learning
 ## How to run
 You need python 3.7+ with numpy, sklearn, pygame and gym.
 
-Use run.py. You can fiddle with the config in the script.
+Use `train.py` for training. You can fiddle with the config in the script.
+
+Use `evaluate.py` to load a saved model (default: `autosave`) and run
+rendered examples plus headless evaluation episodes.
 
 In training, watch the agent play and press 'W' to give a positive reward and 'A' to give a negative. The agent's current action is displayed.
 

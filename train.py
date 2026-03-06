@@ -20,25 +20,30 @@ async def main():
     discount_factor = 1
     epsilon = 0  # vanilla Q learning actually works well with no random exploration
     min_eps = 0
-    num_episodes = 2
+    num_episodes = 3
     tame = True  # set to false for vanilla Q learning
 
     # set a timestep for training TAMER
     # the more time per step, the easier for the human
     # but the longer it takes to train (in real time)
     # 0.2 seconds is fast but doable
-    tamer_training_timestep = 0.3
+    tamer_training_timestep = 0.2
 
     agent = Tamer(env, num_episodes, discount_factor, epsilon, min_eps, tame,
                   tamer_training_timestep, model_file_to_load=None)
 
     await agent.train(model_file_to_save='autosave')
+
+    # For interactive TAMER training, stop here so windows do not immediately
+    # close/reopen when switching into autoplay/evaluation.
+    if tame:
+        return
+
     agent.play(n_episodes=1, render=True)
     agent.evaluate(n_episodes=30)
 
 
 if __name__ == '__main__':
     asyncio.run(main())
-
 
 
